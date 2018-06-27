@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<title>卓朗互娱（福州）网络科技有限公司</title>
+		<link href="./css/third/bootstrap.min.css" rel="stylesheet" />
+		<link href="./css/system/index.css" rel="stylesheet" />
+		<script type="text/javascript" src="./js/third/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="./js/third/vue.js"></script>
+		<script type="text/javascript" src="./js/third/popper.js"></script>
+		<script type="text/javascript" src="./js/third/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript" src="./js/third/md5.min.js"></script>
+	</head>
+	<body>
+		<div id="main" class="h-100">
+			<div v-if="login" class="main h-100">
+				<header class="navbar navbar-expand border-bottom bg-dark">
+					<a href=""><img src="images/logo.png" alt="卓朗互娱" /></a>
+					<ul class="nav nav-pills" role="tablist">
+						<li v-for="data in datas" class="nav-item">
+			      			<a v-on:click="menufunc(data.mid)" :class="data.cl" data-toggle="pill" href="#home">{{data.name}}</a>
+			    		</li>
+					</ul>
+					<ul class="nav flex-row ml-md-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">我的资料</a>
+								<a class="dropdown-item" href="#">修改密码</a>
+								<div class="dropdown-divider"></div>
+								<a v-on:click="out" class="dropdown-item" href="#">退出</a>
+							</div>
+						</li>
+					</ul>
+				</header>
+				<div class="row no-gutters h-100">
+					<div id="menu" class="col-12 col-md-3 col-xl-2 border-right h-100 bg-light">
+						<div v-for="n in divData" class="card">
+							<div class="card-header">
+							     {{n.name}}
+							</div>
+							<ul class="list-group list-group-flush">
+								<li v-for="m in n.arrays" class="list-group-item"><a v-on:click="openwindow(m.mid,m)" href="#" :data-id="m.mid">{{m.name}}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="window col-12 col-md-9 col-xl-10 h-100">
+						<div id="nav">
+							<ul class="nav nav-tabs">
+								<li v-on:click="openwindowz()" class="nav-item"><a id="nav0" data-id="0" class="nav-link active" href="#">你好</a></li>
+								<li  v-for="k in ifrData" class="nav-item"><a :id="k.nav" v-on:click="openwindow(k.mid,k)" :data-id="k.mid" class="nav-link active" href="#">{{k.name}}</a></li>
+							</ul>
+						</div>
+						<div id="windows" class="h-100">
+							<iframe  src="http://www.zolnd.com/" id="window0" class="w-100 h-100"></iframe>
+							<iframe :id="h.wind" v-for="h in ifrData" :src="h.src" class="w-100 h-100"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div v-else class="row h-100 bg-light">
+				<div id="loginbox" class="card">
+					<div class="card-header">
+						登录
+					</div>
+					<div class="card-body">
+						<input id="userN" v-model="userName"  class="form-control butl" type="text" placeholder="请输入账号">
+						<input id="userP" v-model="userPassword" class="form-control butl"  type="password" placeholder="请输入密码">
+						<a href="#" v-on:click="loginf" class="btn btn-primary">登录</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="./js/system/index.js"></script>
+	</body>
+</html>
